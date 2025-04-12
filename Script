@@ -1,0 +1,34 @@
+class FakeClip:
+    def __init__(self, name, start):
+        self.name = name
+        self.start = start
+
+    def GetStart(self):
+        return self.start
+
+# Simular la función LinkItems de DaVinci
+def link_items(clips):
+    print(f"  Vinculando: {clips[0].name} con {clips[1].name}")
+
+# Simulación del script
+def link_audio_and_subtitles():
+    audio_clips = [
+        FakeClip("audio_01", 100),
+        FakeClip("audio_02", 200),
+    ]
+
+    subtitle_clips = [
+        FakeClip("sub_01", 102),
+        FakeClip("sub_02", 198),
+    ]
+
+    for audio in audio_clips:
+        audio_start = audio.GetStart()
+        for sub in subtitle_clips:
+            sub_start = sub.GetStart()
+            if abs(audio_start - sub_start) < 10:
+                link_items([audio, sub])
+                break
+
+if __name__ == "__main__":
+    link_audio_and_subtitles()
